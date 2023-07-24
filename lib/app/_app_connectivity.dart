@@ -15,8 +15,6 @@ class AppConnectivity {
 
   Stream<bool> get connectionChange => connectionChangeController.stream;
 
-  static StreamSubscription<ConnectivityResult> conectivitySubscription;
-
   static String loaiKetNoi(ConnectivityResult connectivityResult) {
     switch (connectivityResult) {
       case ConnectivityResult.bluetooth:

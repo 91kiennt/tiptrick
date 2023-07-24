@@ -6,8 +6,6 @@ import 'package:network_info_plus/network_info_plus.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:tiptrick_game/app/_app_connectivity.dart';
 import 'package:tiptrick_game/auth/views/login_screen.dart';
-import 'package:tiptrick_game/auth/widgets/auth_loading.dart';
-import 'package:tiptrick_game/auth/widgets/group_button_login.dart';
 import 'package:tiptrick_game/base/device_info_model.dart';
 import 'package:tiptrick_game/global_state.dart';
 import 'package:tiptrick_game/helpers/assets.dart';
@@ -67,7 +65,7 @@ class SplashState {
   }
 
   Future<void> initState() async {
-    // startServer();
+    await startServer();
     await getDeviceInfo();
   }
 }
@@ -93,6 +91,7 @@ class SplashPage extends StatelessWidget {
           bottom: 24,
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: const <Widget>[
               Text('TIP TRICK GAME',
                   style: TextStyle(
@@ -141,18 +140,16 @@ class _InViewSplashPageState extends State<_InViewSplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    AuthLoading _loader = AuthLoading();
     return Positioned.fill(
-      top: 20,
+      top: 120,
       left: 0,
       right: 0,
       bottom: 0,
       child: Builder(
         builder: (BuildContext _) {
-          const LoginScreen();
-          groupButtonLogin(() {}, _loader);
+          // const LoginScreen();
           if (!hasConnection) _NotConnectivity();
-          return const SizedBox();
+          return const LoginScreen();
         },
       ),
     );

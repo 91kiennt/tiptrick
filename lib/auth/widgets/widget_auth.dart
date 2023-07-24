@@ -2,7 +2,7 @@ import 'package:tiptrick_game/auth/_auth_export.dart';
 
 Widget aFormLabel(String title) {
   return Container(
-    margin: const EdgeInsets.only(top: 8),
+    margin: const EdgeInsets.only(top: 16),
     alignment: Alignment.centerLeft,
     child: Text(
       title,
@@ -14,7 +14,7 @@ Widget aFormLabel(String title) {
 
 Widget aFormButton(String title, VoidCallback onTap) {
   return Container(
-    margin: const EdgeInsets.only(top: 8),
+    margin: const EdgeInsets.only(top: 16),
     alignment: Alignment.center,
     child: ClipRRect(
       borderRadius: BorderRadius.circular(4),
@@ -22,22 +22,20 @@ Widget aFormButton(String title, VoidCallback onTap) {
         children: <Widget>[
           Positioned.fill(
             child: Container(
-              decoration: const BoxDecoration(color: Colors.blue),
-            ),
+                decoration: const BoxDecoration(color: Colors.transparent)),
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.white,
-              padding: const EdgeInsets.all(16.0),
-              textStyle: const TextStyle(fontSize: 20),
-            ),
+          OutlinedButton(
             onPressed: onTap,
-            child: Text(
-              title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
+            child: Text(title,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20)),
+            style: OutlinedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              side: const BorderSide(color: Colors.white),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
               ),
             ),
           ),
@@ -74,7 +72,7 @@ Widget aForm(GlobalKey<FormState> formKey, List<Widget> children) {
 Widget aFormInput(String hint, TextEditingController controller,
     {bool isPassword = false, bool isEmail = false}) {
   return Container(
-    margin: const EdgeInsets.only(top: 8),
+    margin: const EdgeInsets.only(top: 16),
     child: TextField(
       controller: controller,
       keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.text,
@@ -86,10 +84,10 @@ Widget aFormInput(String hint, TextEditingController controller,
       obscureText: isPassword,
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: const TextStyle(color: Colors.grey, fontSize: 16),
+        hintStyle: const TextStyle(color: Colors.white, fontSize: 16),
         enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          borderSide: BorderSide(color: Colors.grey),
+          borderSide: BorderSide(color: Colors.white),
         ),
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),

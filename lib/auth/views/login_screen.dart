@@ -35,6 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _body() {
+    AuthLoading _loader = AuthLoading();
     List<Widget> _aForm() {
       return [
         aFormLabel("Email"),
@@ -42,7 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
         aFormLabel("Password"),
         aFormInput("Enter your password", _passwordController),
         aFormButton("Sign in", () {}),
-        aFormForgotPassword("Forgot password", () {})
+        aFormForgotPassword("Forgot password", () {}),
+        ...buttonLogin(() {}, _loader)
       ];
     }
 
