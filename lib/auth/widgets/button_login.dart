@@ -1,6 +1,6 @@
 import 'package:tiptrick_game/auth/_auth_export.dart';
 
-List<Widget> buttonLogin(VoidCallback callback, AuthLoading loader) {
+List<Widget> buttonLogin(VoidCallback callback, LoadingApp loader) {
   return <Widget>[
     Row(
       mainAxisSize: MainAxisSize.max,
@@ -27,7 +27,7 @@ List<Widget> buttonLogin(VoidCallback callback, AuthLoading loader) {
 
 class GoogleLoginButton extends StatelessWidget {
   final VoidCallback callback;
-  final AuthLoading loader;
+  final LoadingApp loader;
   const GoogleLoginButton({Key key, this.callback, this.loader})
       : super(key: key);
 
@@ -56,7 +56,7 @@ class GoogleLoginButton extends StatelessWidget {
 
 class FacebookLoginButton extends StatelessWidget {
   final VoidCallback callback;
-  final AuthLoading loader;
+  final LoadingApp loader;
   const FacebookLoginButton({Key key, this.callback, this.loader})
       : super(key: key);
 
@@ -85,7 +85,7 @@ class FacebookLoginButton extends StatelessWidget {
 
 class AppleLoginButton extends StatelessWidget {
   final VoidCallback callback;
-  final AuthLoading loader;
+  final LoadingApp loader;
   const AppleLoginButton({Key key, this.callback, this.loader})
       : super(key: key);
 

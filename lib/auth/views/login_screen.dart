@@ -1,4 +1,5 @@
 import 'package:tiptrick_game/auth/_auth_export.dart';
+import 'package:tiptrick_game/widgets/modals/modal_forgot_password.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key key}) : super(key: key);
@@ -35,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _body() {
-    AuthLoading _loader = AuthLoading();
+    LoadingApp _loader = LoadingApp();
     List<Widget> _aForm() {
       return [
         aFormLabel("Email"),
@@ -43,7 +44,9 @@ class _LoginScreenState extends State<LoginScreen> {
         aFormLabel("Password"),
         aFormInput("Enter your password", _passwordController),
         aFormButton("Sign in", () {}),
-        aFormForgotPassword("Forgot password", () {}),
+        aFormForgotPassword("Forgot password", () {
+          forgotPasswordModal(context: context);
+        }),
         ...buttonLogin(() {}, _loader)
       ];
     }

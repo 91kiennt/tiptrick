@@ -38,6 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Widget _body() {
+    LoadingApp _loader = LoadingApp();
     List<Widget> _aForm() {
       return [
         aFormLabel("User name"),
@@ -46,7 +47,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
         aFormInput("Enter your email address", _emailController),
         aFormLabel("Password"),
         aFormInput("Enter your password", _passwordController),
-        aFormButton("Sign up", () {})
+        aFormButton("Sign up", () {}),
+        ...buttonLogin(() {}, _loader)
       ];
     }
 

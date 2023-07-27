@@ -1,13 +1,29 @@
 import 'package:tiptrick_game/auth/_auth_export.dart';
 
-Widget aFormLabel(String title) {
+class AValidator {
+  static bool validateEmail(String email) {
+    String pattern =
+        r'^(([^<>()[\],;:\s@\"]+(\.[^<>()[\],;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regExp = RegExp(pattern);
+    bool status = regExp.hasMatch(email);
+    return status;
+  }
+
+  static bool validateMobile(String mobile) {
+    String pattern = r'^(([+0|+84])?[0-9]{10,14})$';
+    RegExp regExp = RegExp(pattern);
+    bool status = regExp.hasMatch(mobile);
+    return status;
+  }
+}
+
+Widget aFormLabel(String title, {Color color = Colors.white}) {
   return Container(
     margin: const EdgeInsets.only(top: 16),
     alignment: Alignment.centerLeft,
     child: Text(
       title,
-      style: const TextStyle(
-          fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: 16, color: color, fontWeight: FontWeight.bold),
     ),
   );
 }
@@ -70,7 +86,7 @@ Widget aForm(GlobalKey<FormState> formKey, List<Widget> children) {
 }
 
 Widget aFormInput(String hint, TextEditingController controller,
-    {bool isPassword = false, bool isEmail = false}) {
+    {bool isPassword = false, bool isEmail = false, Color color = Colors.white}) {
   return Container(
     margin: const EdgeInsets.only(top: 16),
     child: TextField(
@@ -84,10 +100,10 @@ Widget aFormInput(String hint, TextEditingController controller,
       obscureText: isPassword,
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: const TextStyle(color: Colors.white, fontSize: 16),
-        enabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          borderSide: BorderSide(color: Colors.white),
+        hintStyle: TextStyle(color: color, fontSize: 16),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          borderSide: BorderSide(color: color),
         ),
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
