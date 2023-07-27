@@ -36,7 +36,7 @@ class Routes {
     }
     return MaterialPageRoute(
       builder: (context) => Scaffold(
-        appBar: CommonTopBar.simple(context, 'Thông báo'),
+        appBar: CommonTopBar.basic(context, 'Thông báo'),
         body: Center(child: Text('Trang ${_route}không tồn tại')),
       ),
     );

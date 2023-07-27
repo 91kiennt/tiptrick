@@ -1,6 +1,6 @@
 import 'package:tiptrick_game/auth/_auth_export.dart';
 
-List<Widget> buttonLogin(VoidCallback callback, LoadingApp loader) {
+List<Widget> buttonSocial(VoidCallback callback, LoadingApp loader) {
   return <Widget>[
     Row(
       mainAxisSize: MainAxisSize.max,

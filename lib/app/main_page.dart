@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tiptrick_game/widgets/drawer.dart';
+import 'package:tiptrick_game/widgets/app_bar.dart';
+import 'package:tiptrick_game/auth/widgets/loading_app.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
@@ -8,8 +11,53 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final LoadingApp _loader = LoadingApp();
+  int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text('Index 0: Trang chủ', style: optionStyle),
+    Text('Index 1: Thống kê', style: optionStyle),
+    Text('Index 2: Lịch sử', style: optionStyle),
+    Text('Index 3: Tài khoản', style: optionStyle),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() => _selectedIndex = index);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: CommonTopBar.custom(context),
+      drawer: const DrawerApp(),
+      body: SafeArea(
+        child: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.stacked_bar_chart), label: 'Statisticals'),
+          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Histories'),
+          BottomNavigationBarItem(icon: Icon(Icons.account_box), label: 'Account'),
+        ],
+        unselectedItemColor: Colors.grey,
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
+      ),
+    );
   }
 }

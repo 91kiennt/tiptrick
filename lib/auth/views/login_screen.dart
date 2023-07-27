@@ -43,11 +43,13 @@ class _LoginScreenState extends State<LoginScreen> {
         aFormInput("Enter your email address", _emailController),
         aFormLabel("Password"),
         aFormInput("Enter your password", _passwordController),
-        aFormButton("Sign in", () {}),
+        aFormButton("Sign in", () {
+          Navigator.of(context).pushNamed('/Home');
+        }),
         aFormForgotPassword("Forgot password", () {
           forgotPasswordModal(context: context);
         }),
-        ...buttonLogin(() {}, _loader)
+        ...buttonSocial(() {}, _loader)
       ];
     }
 

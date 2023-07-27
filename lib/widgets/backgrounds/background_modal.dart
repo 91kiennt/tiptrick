@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class LayerModal extends StatelessWidget {
+class BackGroundModal extends StatelessWidget {
   final String title;
   final Widget content;
   final Widget command;
-  const LayerModal({Key key, this.title, this.content, this.command})
+  const BackGroundModal({Key key, this.title, this.content, this.command})
       : super(key: key);
 
   @override

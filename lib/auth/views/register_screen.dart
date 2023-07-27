@@ -48,7 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         aFormLabel("Password"),
         aFormInput("Enter your password", _passwordController),
         aFormButton("Sign up", () {}),
-        ...buttonLogin(() {}, _loader)
+        ...buttonSocial(() {}, _loader)
       ];
     }
 

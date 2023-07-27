@@ -3,7 +3,7 @@ import 'package:tiptrick_game/auth/_auth_export.dart';
 import 'package:tiptrick_game/helpers/message.dart';
 import 'package:tiptrick_game/helpers/extension.dart';
 import 'package:tiptrick_game/widgets/commons/modal_button.dart';
-import 'package:tiptrick_game/widgets/layer/layer_modal.dart';
+import 'package:tiptrick_game/widgets/backgrounds/background_modal.dart';
 
 Future<bool> forgotPasswordModal({@required BuildContext context}) =>
     showDialog<bool>(
@@ -65,7 +65,7 @@ class _ForgotPasswordDialogState extends State<_ForgotPasswordDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return LayerModal(
+    return BackGroundModal(
       title: 'Lấy lại mật khẩu',
       content: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
