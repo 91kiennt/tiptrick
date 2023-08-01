@@ -15,6 +15,6 @@ class TipTrickHttpOverrides extends HttpOverrides {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = TipTrickHttpOverrides();
-  final DefaultLayerModel bs = await TipTrickApp.defaultLayer();
+  await TipTrickApp.defaultLayer();
   return runApp(TipTrickApp());
 }

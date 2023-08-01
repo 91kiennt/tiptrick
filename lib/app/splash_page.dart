@@ -182,14 +182,6 @@ class _SplashPageState extends State<SplashPage> {
         scrollDirection: Axis.horizontal);
   }
 
-  List<Widget> _buildIndicator() {
-    List<Widget> list = [];
-    for (int i = 0; i < 2; i++) {
-      list.add(i == currentPage ? _indicator(true) : _indicator(false));
-    }
-    return list;
-  }
-
   Widget _indicator(bool isActive) {
     return SizedBox(
       height: 10,
@@ -205,10 +197,7 @@ class _SplashPageState extends State<SplashPage> {
                     color: const Color(0XFF2FB7B2).withOpacity(0.72),
                     blurRadius: 4.0,
                     spreadRadius: 1.0,
-                    offset: const Offset(
-                      0.0,
-                      0.0,
-                    ),
+                    offset: const Offset(0.0, 0.0),
                   )
                 : const BoxShadow(color: Colors.transparent)
           ],
@@ -217,6 +206,14 @@ class _SplashPageState extends State<SplashPage> {
         ),
       ),
     );
+  }
+
+  List<Widget> _buildIndicator() {
+    List<Widget> list = [];
+    for (int i = 0; i < 2; i++) {
+      list.add(i == currentPage ? _indicator(true) : _indicator(false));
+    }
+    return list;
   }
 }
 
