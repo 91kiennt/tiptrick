@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tiptrick_game/widgets/drawer.dart';
 import 'package:tiptrick_game/widgets/app_bar.dart';
 import 'package:tiptrick_game/auth/widgets/loading_app.dart';
+import 'package:tiptrick_game/modules/lichsu/lichsu_screen.dart';
+import 'package:tiptrick_game/modules/thongke/thongke_screen.dart';
 import 'package:tiptrick_game/modules/trangchu/trangchu_screen.dart';
 import 'package:tiptrick_game/modules/taikhoan/taikhoan_screen.dart';
 
@@ -26,12 +28,10 @@ class _MainPageState extends State<MainPage> {
     super.dispose();
   }
 
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     TrangChuScreen(),
-    Text('Index 1: Thống kê', style: optionStyle),
-    Text('Index 2: Lịch sử', style: optionStyle),
+    ThongKeScreen(),
+    LichSuScreen(),
     TaiKhoanScreen(),
   ];
 
