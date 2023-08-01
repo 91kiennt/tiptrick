@@ -19,6 +19,7 @@ class BtnModalCommon {
   static Widget btnNo(String name, VoidCallback onPressed) {
     return TextButton(
       style: TextButton.styleFrom(
+          backgroundColor: Colors.grey,
           primary: Colors.grey,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0))),

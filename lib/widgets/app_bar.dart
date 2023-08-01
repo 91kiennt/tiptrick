@@ -25,9 +25,26 @@ class CommonTopBar extends AppBar {
     Key key,
     bool isCenter = true,
   }) : super(
-          key: key,
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-          title: const Text(''),
-          centerTitle: isCenter,
-        );
+            key: key,
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            title: const Text('Trick Game'),
+            centerTitle: isCenter,
+            actions: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: _topBarSettingIcon(context),
+              )
+            ]);
+}
+
+Widget _topBarSettingIcon(BuildContext context) {
+  return IconButton(
+    padding: EdgeInsets.zero,
+    color: Colors.white,
+    icon: const Icon(Icons.settings, size: 20),
+    iconSize: 30,
+    onPressed: () {
+      Navigator.of(context).pushNamed('/Setting');
+    },
+  );
 }

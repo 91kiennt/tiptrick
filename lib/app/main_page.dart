@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tiptrick_game/widgets/drawer.dart';
 import 'package:tiptrick_game/widgets/app_bar.dart';
 import 'package:tiptrick_game/auth/widgets/loading_app.dart';
+import 'package:tiptrick_game/modules/trangchu/trangchu_screen.dart';
+import 'package:tiptrick_game/modules/taikhoan/taikhoan_screen.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
@@ -27,10 +29,10 @@ class _MainPageState extends State<MainPage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text('Index 0: Trang chủ', style: optionStyle),
+    TrangChuScreen(),
     Text('Index 1: Thống kê', style: optionStyle),
     Text('Index 2: Lịch sử', style: optionStyle),
-    Text('Index 3: Tài khoản', style: optionStyle),
+    TaiKhoanScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -50,8 +52,10 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(Icons.stacked_bar_chart), label: 'Statisticals'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Histories'),
-          BottomNavigationBarItem(icon: Icon(Icons.account_box), label: 'Account'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.history), label: 'Histories'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle_sharp), label: 'Profile'),
         ],
         unselectedItemColor: Colors.grey,
         currentIndex: _selectedIndex,

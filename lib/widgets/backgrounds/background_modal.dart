@@ -39,21 +39,28 @@ class BackGroundModal extends StatelessWidget {
                               topRight: Radius.circular(8),
                             )),
                         child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              const SizedBox(width: 32),
-                              Text(title,
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black87,
-                                      fontWeight: FontWeight.bold)),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: RichText(
+                                  text: TextSpan(
+                                      text: title,
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.black87,
+                                          fontWeight: FontWeight.bold)),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
                               SizedBox(
                                   width: 32,
                                   height: 32,
                                   child: InkWell(
                                       child: const Icon(Icons.close,
                                           color: Colors.black87, size: 24),
-                                      onTap: () => Navigator.pop(context)))
+                                      onTap: () => Navigator.pop(context))),
                             ])),
                     const SizedBox(height: 20),
                     // body

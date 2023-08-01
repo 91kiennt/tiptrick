@@ -86,12 +86,21 @@ Widget aForm(GlobalKey<FormState> formKey, List<Widget> children) {
 }
 
 Widget aFormInput(String hint, TextEditingController controller,
-    {bool isPassword = false, bool isEmail = false, Color color = Colors.white}) {
+    {bool isPassword = false,
+    bool isEmail = false,
+    bool isNumber = false,
+    bool isRadius = false,
+    Color color = Colors.white}) {
+  double _radius = isRadius ? 20 : 4;
   return Container(
     margin: const EdgeInsets.only(top: 16),
     child: TextField(
       controller: controller,
-      keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.text,
+      keyboardType: isEmail
+          ? TextInputType.emailAddress
+          : isNumber
+              ? TextInputType.number
+              : TextInputType.text,
       style: const TextStyle(
           color: Colors.black,
           fontSize: 20,
@@ -102,12 +111,12 @@ Widget aFormInput(String hint, TextEditingController controller,
         hintText: hint,
         hintStyle: TextStyle(color: color, fontSize: 16),
         enabledBorder: OutlineInputBorder(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          borderRadius: BorderRadius.all(Radius.circular(_radius)),
           borderSide: BorderSide(color: color),
         ),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          borderSide: BorderSide(color: Colors.blue),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(_radius)),
+          borderSide: const BorderSide(color: Colors.blue),
         ),
         contentPadding:
             const EdgeInsets.symmetric(vertical: 15, horizontal: 20),

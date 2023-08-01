@@ -22,6 +22,11 @@ class _ForgotPasswordDialogState extends State<_ForgotPasswordDialog> {
   final LoadingApp _loader = LoadingApp();
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     super.dispose();

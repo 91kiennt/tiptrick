@@ -1,4 +1,6 @@
 import 'package:tiptrick_game/auth/_auth_export.dart';
+import 'package:tiptrick_game/helpers/extension.dart';
+import 'package:tiptrick_game/helpers/message.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key key}) : super(key: key);
@@ -37,17 +39,48 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
+  bool get _isValidate {
+    if (_userNameController.text == null || _userNameController.text.isEmpty) {
+      context.tb(MessageAuth.errorLongName);
+      return false;
+    }
+    if (_emailController.text == null || _emailController.text.isEmpty) {
+      context.tb(MessageAuth.errorEmptyEmail);
+      return false;
+    }
+    var isValidEmail = AValidator.validateEmail(_emailController.text);
+    if (!isValidEmail) {
+      context.tb(MessageAuth.errorInvalidEmail);
+      return false;
+    }
+    if (_passwordController.text == null || _passwordController.text.isEmpty) {
+      context.tb(MessageAuth.errorEmptyPassword);
+      return false;
+    }
+    if (_passwordController.text.length < 8) {
+      context.tb(MessageAuth.errorNotmatchPassword);
+      return false;
+    }
+    return true;
+  }
+
   Widget _body() {
     LoadingApp _loader = LoadingApp();
     List<Widget> _aForm() {
       return [
         aFormLabel("User name"),
-        aFormInput("Enter full name", _userNameController),
+        aFormInput("Enter full name", _userNameController, isRadius: true),
         aFormLabel("Email"),
-        aFormInput("Enter your email address", _emailController),
+        aFormInput("Enter your email address", _emailController,
+            isEmail: true, isRadius: true),
         aFormLabel("Password"),
-        aFormInput("Enter your password", _passwordController),
-        aFormButton("Sign up", () {}),
+        aFormInput("Enter your password", _passwordController,
+            isPassword: true, isRadius: true),
+        aFormButton("Sign up", () {
+          if (_isValidate) {
+            Navigator.of(context).pushNamed('/Home');
+          }
+        }),
         ...buttonSocial(() {}, _loader)
       ];
     }

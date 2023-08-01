@@ -1,0 +1,16 @@
+-/ Splash page (Sau khi dang nhap hoac dang ky lan dau tien => Luu token => vao app lan tiep theo se thao tac login hoac logout trong page profile)
+    - Form login
+    - Form register
+    - Form forget password with email
+-/ Setting page
+    - Version app (old version, new version)
+    - Cài đặt theme cho app
+    - Cài đặt độ quan tâm tới tựa game nào
+    - Cài đặt nhận thông báo của app
+    - Cài đặt số quảng cáo hiển thị trên app (admin)
+    * Local storage
+-/ Profile page
+    - Edit avatar
+    - Edit name
+    - Update sdt (nếu cần)
+    - Count notification

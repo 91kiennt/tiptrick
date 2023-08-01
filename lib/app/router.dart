@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tiptrick_game/app/main_page.dart';
 import 'package:tiptrick_game/app/splash_page.dart';
 import 'package:tiptrick_game/widgets/app_bar.dart';
+import 'package:tiptrick_game/modules/caidat/caidat_screen.dart';
 
 class Routes {
   static dynamic initRoute() {
@@ -20,6 +21,10 @@ class Routes {
       case 'Home':
         return FadeOutRoute<bool>(
             builder: (BuildContext context) => const MainPage());
+        break;
+      case 'Setting':
+        return FadeOutRoute<bool>(
+            builder: (BuildContext context) => const CaiDatScreen());
         break;
       default:
         return onUnknownRoute(settings);
