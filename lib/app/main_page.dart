@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiptrick_game/global_state.dart';
 import 'package:tiptrick_game/widgets/drawer.dart';
 import 'package:tiptrick_game/widgets/app_bar.dart';
 import 'package:tiptrick_game/auth/widgets/loading_app.dart';
@@ -17,10 +18,12 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final LoadingApp _loader = LoadingApp();
   int _selectedIndex = 0;
+  String _labelForIndex = '';
 
   @override
   void initState() {
     super.initState();
+    setState(() => _labelForIndex = 'Home');
   }
 
   @override
@@ -36,16 +39,38 @@ class _MainPageState extends State<MainPage> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() => _selectedIndex = index);
+    setState(() {
+      _selectedIndex = index;
+      switch (_selectedIndex) {
+        case 0:
+          _labelForIndex = 'Home';
+          break;
+        case 1:
+          _labelForIndex = 'Statisticals';
+          break;
+        case 2:
+          _labelForIndex = 'Histories';
+          break;
+        case 3:
+          _labelForIndex = 'Profile';
+          break;
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonTopBar.custom(context),
+      key: scaffoldKey,
+      appBar: CommonTopBar.custom(context, _labelForIndex),
       drawer: const DrawerApp(),
-      body: SafeArea(
-        child: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[];
+        },
+        body: SafeArea(
+          child: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
