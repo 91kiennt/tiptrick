@@ -2,7 +2,7 @@ import 'package:provider/provider.dart';
 import 'package:tiptrick_game/auth/_auth_export.dart';
 import 'package:tiptrick_game/helpers/message.dart';
 import 'package:tiptrick_game/helpers/extension.dart';
-import 'package:tiptrick_game/widgets/commons/modal_button.dart';
+import 'package:tiptrick_game/widgets/commons/common_modal_button.dart';
 import 'package:tiptrick_game/widgets/backgrounds/background_modal.dart';
 
 Future<bool> editPhoneModal({@required BuildContext context}) =>
