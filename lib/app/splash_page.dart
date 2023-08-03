@@ -2,14 +2,15 @@ import 'dart:io';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:network_info_plus/network_info_plus.dart';
+import 'package:tiptrick_game/global_state.dart';
+// import 'package:tiptrick_game/env/env_state.dart';
+import 'package:tiptrick_game/helpers/assets.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:network_info_plus/network_info_plus.dart';
 import 'package:tiptrick_game/app/_app_connectivity.dart';
+import 'package:tiptrick_game/base/device_info_model.dart';
 import 'package:tiptrick_game/auth/views/login_screen.dart';
 import 'package:tiptrick_game/auth/views/register_screen.dart';
-import 'package:tiptrick_game/base/device_info_model.dart';
-import 'package:tiptrick_game/global_state.dart';
-import 'package:tiptrick_game/helpers/assets.dart';
 
 class SplashState {
   Future<void> getDeviceInfo() async {
@@ -95,6 +96,9 @@ class _SplashPageState extends State<SplashPage> {
     _spState.initState();
     hasConnection = GlobalState.hasConnectivity;
     AppConnectivity connect = AppConnectivity.getInstance();
+    // EnvState.instance.initEnvForRemote().then((_) {
+    //   EnvState.instance.setEnvForApp();
+    // });
     connectionChangeStream = connect.connectionChange.listen((event) {
       setState(() {
         hasConnection = event;

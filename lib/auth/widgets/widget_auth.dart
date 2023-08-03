@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:tiptrick_game/auth/_auth_export.dart';
 
 class AValidator {
@@ -120,6 +122,27 @@ Widget aFormInput(String hint, TextEditingController controller,
         ),
         contentPadding:
             const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+      ),
+    ),
+  );
+}
+
+Widget aFormUpload(String hint, VoidCallback onTap) {
+  return Container(
+    margin: const EdgeInsets.only(top: 16),
+    height: 200,
+    alignment: Alignment.center,
+    decoration: BoxDecoration(
+        border: Border.all(width: 1, color: Colors.black87),
+        borderRadius: BorderRadius.circular(8)),
+    child: GestureDetector(
+      onTap: onTap,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const Icon(Icons.image, size: 40, color: Colors.grey),
+          Text(hint, style: const TextStyle(fontSize: 20, color: Colors.grey))
+        ],
       ),
     ),
   );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiptrick_game/widgets/commons/common_button.dart';
+import 'package:tiptrick_game/widgets/modals/modal_edit_image.dart';
 import 'package:tiptrick_game/widgets/modals/modal_edit_name.dart';
 import 'package:tiptrick_game/widgets/modals/modal_edit_phone.dart';
 import 'package:tiptrick_game/widgets/modals/modal_edit_email.dart';
@@ -51,7 +52,9 @@ class _TaiKhoanScreenState extends State<TaiKhoanScreen> {
             width: 50,
             height: 50,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                uploadImageModal(context: context);
+              },
               child: const Icon(Icons.picture_in_picture,
                   size: 24, color: Colors.white),
             ),
