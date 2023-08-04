@@ -53,22 +53,27 @@ class _UploadImageDialogState extends State<_UploadImageDialog> {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.black87)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Icon(Icons.camera_alt_outlined, color: Colors.black87),
-                  SizedBox(width: 12),
-                  Text('Mở camera',
-                      style: TextStyle(color: Colors.black87, fontSize: 16),
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center),
-                ],
-              )),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pushNamed('/Camera');
+            },
+            child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.black87)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const <Widget>[
+                    Icon(Icons.camera_alt_outlined, color: Colors.black87),
+                    SizedBox(width: 12),
+                    Text('Mở camera',
+                        style: TextStyle(color: Colors.black87, fontSize: 16),
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center),
+                  ],
+                )),
+          ),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

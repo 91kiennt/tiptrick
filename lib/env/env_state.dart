@@ -1,9 +1,9 @@
-import 'dart:convert';
+// import 'dart:convert';
 
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:tiptrick_game/base/enum.dart';
 import 'package:tiptrick_game/env/env_model.dart';
 import 'package:tiptrick_game/env/env_remote.dart';
+// import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class EnvState {
   EnvState._();
@@ -16,7 +16,7 @@ class EnvState {
   EnvEnum _envEnum = EnvEnum.staging;
   set appEnv(EnvEnum value) => _envEnum = value;
 
-  FirebaseRemoteConfig get remoteFirebase => FirebaseRemoteConfig.instance;
+  // FirebaseRemoteConfig get remoteFirebase => FirebaseRemoteConfig.instance;
 
   EnvRemote get envRemote => EnvRemote.instance;
 
@@ -39,9 +39,9 @@ class EnvState {
 
   Future<void> initEnvForRemote() async {
     void _initEnvForRemote() {
-      Map<String, dynamic> _cfg =
-          json.decode(remoteFirebase.getString('_AppConstant'));
-      envRemote.endPointApi = _cfg['AppDomain'];
+      // Map<String, dynamic> _cfg =
+      //     json.decode(remoteFirebase.getString('_AppConstant'));
+      // envRemote.endPointApi = _cfg['AppDomain'];
     }
 
     _initEnvForRemote();

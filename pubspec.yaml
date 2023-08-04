@@ -21,7 +21,8 @@ dependencies:
   flutter_svg: ">=0.23.0+1 <2.0.0"
   flutter_spinkit:
   hive_flutter: ^1.1.0
-  firebase_remote_config: ^3.0.15
+  # firebase_core: ^1.24.0
+  # firebase_remote_config: 2.0.0
   camera: ^0.10.0+3
 
 dev_dependencies:
