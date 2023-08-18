@@ -33,7 +33,7 @@ class SplashState {
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
       _deviceInfo.clientIp = deviceIp;
-      _deviceInfo.clientId = androidInfo.androidId;
+      _deviceInfo.clientId = androidInfo.id;
       _deviceInfo.deviceInfo = androidInfo.model;
       _deviceInfo.fcmToken = "";
       _deviceInfo.versionNumber = androidInfo.version.sdkInt.toString();
@@ -76,10 +76,10 @@ class SplashPage extends StatefulWidget {
   const SplashPage({Key key}) : super(key: key);
 
   @override
-  _SplashPageState createState() => _SplashPageState();
+  SplashPageState createState() => SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class SplashPageState extends State<SplashPage> {
   final SplashState _spState = SplashState();
   bool hasConnection = false;
   StreamSubscription<bool> connectionChangeStream;
@@ -174,16 +174,17 @@ class _SplashPageState extends State<SplashPage> {
 
   Widget _buildPageView() {
     return PageView(
-        controller: _pageController,
-        allowImplicitScrolling: true,
-        onPageChanged: (int idPage) {
-          setState(() => currentPage = idPage);
-        },
-        children: const <Widget>[
-          LoginScreen(),
-          RegisterScreen(),
-        ],
-        scrollDirection: Axis.horizontal);
+      controller: _pageController,
+      allowImplicitScrolling: true,
+      onPageChanged: (int idPage) {
+        setState(() => currentPage = idPage);
+      },
+      scrollDirection: Axis.horizontal,
+      children: const <Widget>[
+        LoginScreen(),
+        RegisterScreen(),
+      ],
+    );
   }
 
   Widget _indicator(bool isActive) {

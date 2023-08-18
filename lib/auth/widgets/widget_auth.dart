@@ -42,11 +42,6 @@ Widget aFormButton(String title, VoidCallback onTap) {
           ),
           OutlinedButton(
             onPressed: onTap,
-            child: Text(title,
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20)),
             style: OutlinedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               side: const BorderSide(color: Colors.white),
@@ -54,6 +49,11 @@ Widget aFormButton(String title, VoidCallback onTap) {
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
+            child: Text(title,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20)),
           ),
         ],
       ),
@@ -91,7 +91,7 @@ Widget aFormInput(String hint, TextEditingController controller,
     bool isNumber = false,
     bool isRadius = false,
     Color color = Colors.white}) {
-  double _radius = isRadius ? 20 : 4;
+  double radius = isRadius ? 20 : 4;
   return Container(
     margin: const EdgeInsets.only(top: 16),
     child: TextField(
@@ -111,11 +111,11 @@ Widget aFormInput(String hint, TextEditingController controller,
         hintText: hint,
         hintStyle: TextStyle(color: color, fontSize: 16),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(_radius)),
+          borderRadius: BorderRadius.all(Radius.circular(radius)),
           borderSide: BorderSide(color: color),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(_radius)),
+          borderRadius: BorderRadius.all(Radius.circular(radius)),
           borderSide: const BorderSide(color: Colors.blue),
         ),
         contentPadding:

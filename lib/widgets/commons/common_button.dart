@@ -84,42 +84,42 @@ class _CommonButtonState extends State<CommonButton> {
 
   @override
   Widget build(BuildContext context) {
-    OutlinedBorder _border = RoundedRectangleBorder(
+    OutlinedBorder border = RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(widget.radius)));
-    final ButtonStyle _textButtonStyle = TextButton.styleFrom(
+    final ButtonStyle textButtonStyle = TextButton.styleFrom(
         padding: _padding,
-        shape: _border,
-        primary: widget.bgColor,
+        shape: border,
+        foregroundColor: widget.bgColor,
         shadowColor: Colors.transparent);
-    final ButtonStyle _outlineButtonStyle = OutlinedButton.styleFrom(
+    final ButtonStyle outlineButtonStyle = OutlinedButton.styleFrom(
         padding: _padding,
         side: const BorderSide(width: 0.8, color: Color(0xFF838383)),
-        primary: widget.bgColor,
+        foregroundColor: widget.bgColor,
         shadowColor: Colors.transparent);
-    final ButtonStyle _elevatedButtonStyle = ElevatedButton.styleFrom(
+    final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-        shape: _border,
+        shape: border,
         side: const BorderSide(width: 0.8, color: Color(0xFF838383)),
-        primary: widget.bgColor,
+        foregroundColor: widget.bgColor,
         shadowColor: Colors.transparent);
 
     switch (widget.typeBtn) {
       case 0:
         return TextButton(
-            onPressed: _onPressed, child: _child(), style: _textButtonStyle);
+            onPressed: _onPressed, style: textButtonStyle, child: _child());
       case 1:
         return OutlinedButton(
-            onPressed: _onPressed, child: _child(), style: _outlineButtonStyle);
+            onPressed: _onPressed, style: outlineButtonStyle, child: _child());
       case 2:
         return ElevatedButton(
             onPressed: _onPressed,
-            child: _child(),
-            style: _elevatedButtonStyle);
+            style: elevatedButtonStyle,
+            child: _child());
       case 3:
         return ElevatedButton(
             onPressed: _onPressed,
-            child: _child(),
-            style: _elevatedButtonStyle);
+            style: elevatedButtonStyle,
+            child: _child());
       default:
         return const SizedBox();
     }

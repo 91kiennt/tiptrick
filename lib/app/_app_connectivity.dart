@@ -29,6 +29,8 @@ class AppConnectivity {
         return "none";
       case ConnectivityResult.vpn:
         return "vpn";
+      case ConnectivityResult.other:
+        break;
     }
     return '';
   }

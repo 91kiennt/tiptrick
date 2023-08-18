@@ -58,9 +58,9 @@ class _EditPhoneDialogState extends State<_EditPhoneDialog> {
     });
     _loader.hide();
     if (value) {
-      Navigator.pop(context);
+      if (context.mounted) Navigator.pop(context);
     } else {
-      context.tb(MessageAuth.authResetpassFail);
+      if (context.mounted) context.tb(MessageAuth.authResetpassFail);
     }
   }
 

@@ -54,9 +54,9 @@ class _ForgotPasswordDialogState extends State<_ForgotPasswordDialog> {
         await authState.handleForgotPassword(email: _emailController.text);
     _loader.hide();
     if (value) {
-      Navigator.pop(context);
+      if (context.mounted) Navigator.pop(context);
     } else {
-      context.tb(MessageAuth.authForgetpassFail);
+      if (context.mounted) context.tb(MessageAuth.authForgetpassFail);
     }
   }
 

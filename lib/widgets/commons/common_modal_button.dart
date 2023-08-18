@@ -5,14 +5,14 @@ class BtnModalCommon {
     return TextButton(
       style: TextButton.styleFrom(
           backgroundColor: Colors.blueAccent,
-          primary: Colors.blueAccent,
+          foregroundColor: Colors.blueAccent,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0))),
+      onPressed: onPressed,
       child: DefaultTextStyle(
           style: const TextStyle(
               fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
           child: Text(name)),
-      onPressed: onPressed,
     );
   }
 
@@ -20,14 +20,14 @@ class BtnModalCommon {
     return TextButton(
       style: TextButton.styleFrom(
           backgroundColor: Colors.grey,
-          primary: Colors.grey,
+          foregroundColor: Colors.grey,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(4.0))),
+      onPressed: onPressed,
       child: DefaultTextStyle(
           style: const TextStyle(
               fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
           child: Text(name)),
-      onPressed: onPressed,
     );
   }
 

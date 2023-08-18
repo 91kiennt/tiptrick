@@ -28,10 +28,10 @@ class TipTrickApp extends StatefulWidget {
   }
 
   @override
-  _TipTrickAppState createState() => _TipTrickAppState();
+  TipTrickAppState createState() => TipTrickAppState();
 }
 
-class _TipTrickAppState extends State<TipTrickApp> with WidgetsBindingObserver {
+class TipTrickAppState extends State<TipTrickApp> with WidgetsBindingObserver {
   StreamSubscription<ConnectivityResult> _conectivitySubscription;
 
   @override

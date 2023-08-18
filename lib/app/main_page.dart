@@ -12,10 +12,10 @@ class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
 
   @override
-  _MainPageState createState() => _MainPageState();
+  MainPageState createState() => MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class MainPageState extends State<MainPage> {
   final LoadingApp _loader = LoadingApp();
   int _selectedIndex = 0;
   String _labelForIndex = '';

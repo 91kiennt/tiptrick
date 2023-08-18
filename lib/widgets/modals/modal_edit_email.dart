@@ -57,7 +57,7 @@ class _EditEmailDialogState extends State<_EditEmailDialog> {
     return true;
   }
 
-  void _submit() async {
+  Future<void> _submit() async {
     if (!_validator) return;
     // await aRecaptchaVerify(context);
     var authState = Provider.of<AuthState>(context, listen: false);
@@ -68,9 +68,9 @@ class _EditEmailDialogState extends State<_EditEmailDialog> {
     });
     _loader.hide();
     if (value) {
-      Navigator.pop(context);
+      if (context.mounted) Navigator.pop(context);
     } else {
-      context.tb(MessageAuth.authResetpassFail);
+      if (context.mounted) context.tb(MessageAuth.authResetpassFail);
     }
   }
 
