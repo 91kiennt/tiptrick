@@ -23,10 +23,12 @@ class _LichSuScreenState extends State<LichSuScreen> {
     super.dispose();
   }
 
+  Future<void> refresh() async {}
+
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () {},
+      onRefresh: () async => await refresh(),
       backgroundColor: Colors.white,
       color: Colors.blue,
       child: CustomScrollView(
@@ -55,7 +57,7 @@ class _LichSuScreenState extends State<LichSuScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: [
-          const Icon(Icons.show_chart_rounded, size: 20),
+          Icon(_icon(0), size: 20),
           Expanded(
             child: CommonListTile(
               title: Row(
@@ -93,5 +95,14 @@ class _LichSuScreenState extends State<LichSuScreen> {
         ],
       ),
     );
+  }
+
+  IconData _icon(int dpType) {
+    switch (dpType) {
+      case 1:
+        return Icons.person;
+      default:
+        return Icons.notifications;
+    }
   }
 }

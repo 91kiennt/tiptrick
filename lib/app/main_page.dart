@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiptrick_game/app/_app_initialize.dart';
 import 'package:tiptrick_game/global_state.dart';
 import 'package:tiptrick_game/widgets/drawer.dart';
 import 'package:tiptrick_game/widgets/app_bar.dart';
@@ -24,6 +25,7 @@ class MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     setState(() => _labelForIndex = 'Home');
+    AppInitialize.instance.initialize(context);
   }
 
   @override
