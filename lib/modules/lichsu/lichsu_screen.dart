@@ -25,21 +25,26 @@ class _LichSuScreenState extends State<LichSuScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      shrinkWrap: true,
-      physics: const BouncingScrollPhysics(),
-      slivers: [
-        MultiSliver(children: [
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (_, index) {
-                return _itemHistory(index);
-              },
-              childCount: _listIndex.length,
-            ),
-          )
-        ])
-      ],
+    return RefreshIndicator(
+      onRefresh: () {},
+      backgroundColor: Colors.white,
+      color: Colors.blue,
+      child: CustomScrollView(
+        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          MultiSliver(children: [
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (_, index) {
+                  return _itemHistory(index);
+                },
+                childCount: _listIndex.length,
+              ),
+            )
+          ])
+        ],
+      ),
     );
   }
 
@@ -50,40 +55,41 @@ class _LichSuScreenState extends State<LichSuScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: [
-          // icon
-          Expanded(child: Text('$index')),
-          CommonListTile(
-            title: const Text('Text'),
-            subtitle: const Text('Text'),
-            onTap: () {},
+          const Icon(Icons.show_chart_rounded, size: 20),
+          Expanded(
+            child: CommonListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Lịch sử thao tác'),
+                  Expanded(
+                    child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          // Action
+                          Row(
+                            children: [
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.refresh),
+                                  iconSize: 20),
+                              const Icon(Icons.warning,
+                                  color: Colors.red, size: 20),
+                            ],
+                          ),
+                          const SizedBox(width: 20),
+                          // Thoi gian
+                          const Text('16:20')
+                        ]),
+                  )
+                ],
+              ),
+              subtitle: const Text('Mô tả ngắn'),
+              onTap: () {},
+              trailing: const SizedBox(),
+            ),
           )
-          // ListTile(
-          //   contentPadding: const EdgeInsets.all(0.0),
-          //   title: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       // Title
-          //       const Text('Lịch sử thao tác'),
-          //       // Thoi gian, Action
-          //       Row(children: [
-          //         // Action
-          //         Expanded(
-          //             child: Row(
-          //           children: [
-          //             IconButton(
-          //                 onPressed: () {},
-          //                 icon: const Icon(Icons.refresh),
-          //                 iconSize: 20),
-          //             const Icon(Icons.warning, color: Colors.red, size: 20),
-          //           ],
-          //         )),
-          //         // Thoi gian
-          //         const Text('16:20')
-          //       ])
-          //     ],
-          //   ),
-          //   subtitle: const Text('Mô tả ngắn'),
-          // )
         ],
       ),
     );
