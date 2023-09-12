@@ -14,7 +14,7 @@ import 'package:tiptrick_game/auth/views/register_screen.dart';
 
 class SplashState {
   Future<void> getDeviceInfo() async {
-    Future<String> _getIps() async {
+    Future<String> getIps() async {
       for (var interface in await NetworkInterface.list()) {
         for (var addr in interface.addresses) {
           if (addr.type.name.contains('IPv4')) {
@@ -26,24 +26,24 @@ class SplashState {
       return networkInfo.getWifiIP();
     }
 
-    String deviceIp = await _getIps();
+    String deviceIp = await getIps();
 
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    var _deviceInfo = DeviceInfoModel();
+    DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+    var deviceInfoModel = DeviceInfoModel();
     if (Platform.isAndroid) {
-      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      _deviceInfo.clientIp = deviceIp;
-      _deviceInfo.clientId = androidInfo.id;
-      _deviceInfo.deviceInfo = androidInfo.model;
-      _deviceInfo.fcmToken = "";
-      _deviceInfo.versionNumber = androidInfo.version.sdkInt.toString();
+      AndroidDeviceInfo androidInfo = await deviceInfoPlugin.androidInfo;
+      deviceInfoModel.clientIp = deviceIp;
+      deviceInfoModel.clientId = androidInfo.id;
+      deviceInfoModel.deviceInfo = androidInfo.model;
+      deviceInfoModel.fcmToken = "";
+      deviceInfoModel.versionNumber = androidInfo.version.sdkInt.toString();
     } else if (Platform.isIOS) {
-      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      _deviceInfo.clientIp = deviceIp;
-      _deviceInfo.clientId = iosInfo.identifierForVendor;
-      _deviceInfo.deviceInfo = iosInfo.model;
-      _deviceInfo.fcmToken = "";
-      _deviceInfo.versionNumber = iosInfo.systemVersion;
+      IosDeviceInfo iosInfo = await deviceInfoPlugin.iosInfo;
+      deviceInfoModel.clientIp = deviceIp;
+      deviceInfoModel.clientId = iosInfo.identifierForVendor;
+      deviceInfoModel.deviceInfo = iosInfo.model;
+      deviceInfoModel.fcmToken = "";
+      deviceInfoModel.versionNumber = iosInfo.systemVersion;
     }
   }
 

@@ -5,7 +5,6 @@ import 'package:tiptrick_game/widgets/commons/common_list_tile.dart';
 import 'package:tiptrick_game/widgets/modals/modal_setting_ads.dart';
 import 'package:tiptrick_game/widgets/backgrounds/background_section.dart';
 
-// edit anh, login or logout account
 class CaiDatScreen extends StatefulWidget {
   const CaiDatScreen({Key key}) : super(key: key);
 

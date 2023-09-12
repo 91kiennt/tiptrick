@@ -55,8 +55,8 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _body() {
-    LoadingApp _loader = LoadingApp();
-    List<Widget> _aForm() {
+    LoadingApp loader = LoadingApp();
+    List<Widget> aColumn() {
       return [
         aFormLabel("Email"),
         aFormInput("Enter your email address", _emailController,
@@ -72,16 +72,16 @@ class LoginScreenState extends State<LoginScreen> {
         aFormForgotPassword("Forgot password", () {
           forgotPasswordModal(context: context);
         }),
-        ...buttonSocial(() {}, _loader)
+        ...buttonSocial(() {}, loader)
       ];
     }
 
-    List<Widget> _aBody() => [aForm(_formKey, _aForm())];
+    List<Widget> aBody() => [aForm(_formKey, aColumn())];
 
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       physics: const NeverScrollableScrollPhysics(),
-      child: Column(children: _aBody()),
+      child: Column(children: aBody()),
     );
   }
 }

@@ -37,17 +37,17 @@ class Routes {
   }
 
   static Route onUnknownRoute(RouteSettings settings) {
-    String _route = '';
+    String route = '';
     try {
-      _route = settings.name.split('/')[1];
-      _route += ' ';
+      route = settings.name.split('/')[1];
+      route += ' ';
     } catch (e) {
-      _route = '';
+      route = '';
     }
     return MaterialPageRoute(
       builder: (context) => Scaffold(
         appBar: CommonTopBar.basic(context, 'Thông báo'),
-        body: Center(child: Text('Trang ${_route}không tồn tại')),
+        body: Center(child: Text('Trang ${route}không tồn tại')),
       ),
     );
   }

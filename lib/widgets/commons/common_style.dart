@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class _CommonStyle {
+class CommonStyle {
   // height
   int titleHeight;
   int descHeight;
@@ -15,7 +15,7 @@ class _CommonStyle {
   // fontsize
   int sizeTitle;
   int sizeDesc;
-  _CommonStyle({
+  CommonStyle({
     // height
     this.titleHeight = 0,
     this.descHeight = 0,

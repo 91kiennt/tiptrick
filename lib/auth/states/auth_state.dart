@@ -5,19 +5,19 @@ class AuthState extends AppState {
     return true;
   }
 
-  Future<bool> handleEditEmail(Map<String, dynamic> _params) async {
+  Future<bool> handleEditEmail(Map<String, dynamic> params) async {
     return true;
   }
 
-  Future<bool> handleEditName(Map<String, dynamic> _params) async {
+  Future<bool> handleEditName(Map<String, dynamic> params) async {
     return true;
   }
 
-  Future<bool> handleEditPhone(Map<String, dynamic> _params) async {
+  Future<bool> handleEditPhone(Map<String, dynamic> params) async {
     return true;
   }
 
-  Future<bool> handleSettingAds(Map<String, dynamic> _params) async {
+  Future<bool> handleSettingAds(Map<String, dynamic> params) async {
     return true;
   }
 }

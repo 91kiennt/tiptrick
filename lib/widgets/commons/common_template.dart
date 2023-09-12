@@ -1,13 +1,13 @@
 import 'package:tiptrick_game/auth/_auth_export.dart';
 
-Widget _itemVertical() {
+Widget itemVertical() {
   return Container();
 }
 
-Widget _itemHorizontal() {
+Widget itemHorizontal() {
   return Container();
 }
 
-Widget _itemCustom() {
+Widget itemCustom() {
   return Container();
 }

@@ -24,6 +24,7 @@ dependencies:
   # firebase_core: ^1.24.0
   # firebase_remote_config: 2.0.0
   camera: ^0.10.0+3
+  sliver_tools: ^0.2.12
 
 dev_dependencies:
   flutter_test:

@@ -20,8 +20,8 @@ class EnvState {
 
   EnvRemote get envRemote => EnvRemote.instance;
 
-  void _setEnvForState(EnvEnum _envEnum) {
-    switch (_envEnum) {
+  void _setEnvForState(EnvEnum envEnum) {
+    switch (envEnum) {
       case EnvEnum.development:
         _envModel = EnvModel(apiEndPoint: envRemote.endPointApi);
         break;
@@ -38,12 +38,12 @@ class EnvState {
   }
 
   Future<void> initEnvForRemote() async {
-    void _initEnvForRemote() {
+    void initEnvForRemote() {
       // Map<String, dynamic> _cfg =
       //     json.decode(remoteFirebase.getString('_AppConstant'));
       // envRemote.endPointApi = _cfg['AppDomain'];
     }
 
-    _initEnvForRemote();
+    initEnvForRemote();
   }
 }

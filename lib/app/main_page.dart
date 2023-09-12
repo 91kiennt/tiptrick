@@ -16,7 +16,7 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> {
-  final LoadingApp _loader = LoadingApp();
+  final LoadingApp loader = LoadingApp();
   int _selectedIndex = 0;
   String _labelForIndex = '';
 
@@ -31,12 +31,25 @@ class MainPageState extends State<MainPage> {
     super.dispose();
   }
 
-  static const List<Widget> _widgetOptions = <Widget>[
+  static const List<Widget> _screens = <Widget>[
     TrangChuScreen(),
     ThongKeScreen(),
     LichSuScreen(),
     TaiKhoanScreen(),
   ];
+
+  Widget _appBar(BuildContext context, String label) {
+    switch (label) {
+      case 'Home':
+      case 'Profile':
+      case 'Statisticals':
+        return CommonTopBar.custom(context, _labelForIndex);
+      case 'Histories':
+        return CommonTopBar.history(context, _labelForIndex);
+      default:
+        return const SizedBox();
+    }
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -62,14 +75,14 @@ class MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: CommonTopBar.custom(context, _labelForIndex),
+      appBar: _appBar(context, _labelForIndex),
       drawer: const DrawerApp(),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[];
         },
         body: SafeArea(
-          child: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+          child: Center(child: _screens.elementAt(_selectedIndex)),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(

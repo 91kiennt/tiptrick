@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CommonListTile extends StatelessWidget {
   final Widget title;
+  final Widget subtitle;
   final IconData icon;
   final Widget trailing;
   final bool isShowModal;
@@ -9,6 +10,7 @@ class CommonListTile extends StatelessWidget {
   const CommonListTile(
       {Key key,
       this.title,
+      this.subtitle,
       this.icon,
       this.trailing,
       this.isShowModal = false,
@@ -20,6 +22,7 @@ class CommonListTile extends StatelessWidget {
     return ListTile(
       contentPadding: const EdgeInsets.all(0.0),
       title: title,
+      subtitle: subtitle,
       minLeadingWidth: 0,
       leading: Icon(icon),
       trailing: trailing ??

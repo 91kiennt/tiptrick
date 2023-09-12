@@ -65,8 +65,8 @@ class RegisterScreenState extends State<RegisterScreen> {
   }
 
   Widget _body() {
-    LoadingApp _loader = LoadingApp();
-    List<Widget> _aForm() {
+    LoadingApp loader = LoadingApp();
+    List<Widget> aColumn() {
       return [
         aFormLabel("User name"),
         aFormInput("Enter full name", _userNameController, isRadius: true),
@@ -81,16 +81,16 @@ class RegisterScreenState extends State<RegisterScreen> {
             Navigator.of(context).pushNamed('/Home');
           }
         }),
-        ...buttonSocial(() {}, _loader)
+        ...buttonSocial(() {}, loader)
       ];
     }
 
-    List<Widget> _aBody() => [aForm(_formKey, _aForm())];
+    List<Widget> aBody() => [aForm(_formKey, aColumn())];
 
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       physics: const NeverScrollableScrollPhysics(),
-      child: Column(children: _aBody()),
+      child: Column(children: aBody()),
     );
   }
 }
