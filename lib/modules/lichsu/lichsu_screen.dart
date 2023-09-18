@@ -35,17 +35,43 @@ class _LichSuScreenState extends State<LichSuScreen> {
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
         slivers: [
-          MultiSliver(children: [
+          MultiSliver(pushPinnedChildren: true, children: [
+            SliverPersistentHeader(
+                pinned: true, delegate: HeaderLayoutHistory()),
             SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (_, index) {
-                  return _itemHistory(index);
-                },
-                childCount: _listIndex.length,
-              ),
-            )
+                delegate: SliverChildBuilderDelegate((_, index) {
+              return _layoutHistoryOnDate(index);
+            }, childCount: _listIndex.take(10).length))
+          ]),
+          MultiSliver(pushPinnedChildren: true, children: [
+            SliverPersistentHeader(
+                pinned: true, delegate: HeaderLayoutHistory()),
+            SliverList(
+                delegate: SliverChildBuilderDelegate((_, index) {
+              return _layoutHistoryAllDate(index);
+            }, childCount: _listIndex.take(10).length))
           ])
         ],
+      ),
+    );
+  }
+
+  Widget _layoutHistoryOnDate(int index) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+      decoration: BoxDecoration(
+          border: Border.all(width: 1, color: Colors.grey.withOpacity(.5))),
+      child: Column(
+        children: [_itemHistory(index)],
+      ),
+    );
+  }
+
+  Widget _layoutHistoryAllDate(int index) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+      child: Column(
+        children: [_itemHistory(index)],
       ),
     );
   }
@@ -102,7 +128,108 @@ class _LichSuScreenState extends State<LichSuScreen> {
       case 1:
         return Icons.person;
       default:
-        return Icons.notifications;
+        return Icons.abc;
     }
   }
+
+  // Widget _filterInLayout() {
+  //   return PopupMenuButton(
+  //     key: const Key('PopupMenuButton'),
+  //     padding: const EdgeInsets.all(0),
+  //     itemBuilder: (context) => [
+  //       PopupMenuItem(
+  //           value: 1,
+  //           child: Row(children: const [
+  //             Text('Tăng dần',
+  //                 style: TextStyle(fontSize: 14, color: Colors.black87))
+  //           ])),
+  //       PopupMenuItem(
+  //           value: 2,
+  //           child: Row(children: const [
+  //             Text('Giảm dần',
+  //                 style: TextStyle(fontSize: 14, color: Colors.black87))
+  //           ]))
+  //     ],
+  //     onSelected: (value) async {
+  //       switch (value) {
+  //         case 1:
+  //           break;
+  //         case 2:
+  //           break;
+  //       }
+  //     },
+  //     child: const Padding(
+  //       padding: EdgeInsets.all(8.0),
+  //       child: Icon(Icons.more_horiz, size: 25), //more_vert
+  //     ),
+  //   );
+  // }
+}
+
+class HeaderLayoutHistory extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      decoration: const BoxDecoration(color: Colors.grey),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints.tightFor(
+          height: 60,
+        ),
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Text('Ngày ${DateTime.now()}',
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16)),
+          // bo loc
+          _filterInLayout(),
+        ]),
+      ),
+    );
+  }
+
+  Widget _filterInLayout() {
+    return PopupMenuButton(
+      key: const Key('PopupMenuButton'),
+      padding: const EdgeInsets.all(0),
+      itemBuilder: (context) => [
+        PopupMenuItem(
+            value: 1,
+            child: Row(children: const [
+              Text('Tăng dần',
+                  style: TextStyle(fontSize: 14, color: Colors.black87))
+            ])),
+        PopupMenuItem(
+            value: 2,
+            child: Row(children: const [
+              Text('Giảm dần',
+                  style: TextStyle(fontSize: 14, color: Colors.black87))
+            ]))
+      ],
+      onSelected: (value) async {
+        switch (value) {
+          case 1:
+            break;
+          case 2:
+            break;
+        }
+      },
+      child: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Icon(Icons.more_horiz, size: 25), //more_vert
+      ),
+    );
+  }
+
+  @override
+  double get maxExtent => 60;
+
+  @override
+  double get minExtent => 60;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      true;
 }
