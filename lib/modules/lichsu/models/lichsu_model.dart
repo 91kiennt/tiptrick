@@ -21,7 +21,14 @@ class LichSuModel extends ModelAbstract {
         );
 
   @override
-  Map<String, dynamic> toMap() => null;
+  Map<String, dynamic> toMap() => {
+    'contentId': contentId,
+    'title': title,
+    'description': description,
+    'iconId': iconId,
+    'createDate': createDate,
+    'displayType': displayType,
+  };
 
   factory LichSuModel.fromJson(Map<String, dynamic> json) {
     try {

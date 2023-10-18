@@ -3,13 +3,12 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:tiptrick_game/app/router.dart';
+import 'package:tiptrick_game/global_state.dart';
 import 'package:tiptrick_game/app/splash_page.dart';
 import 'package:tiptrick_game/auth/_auth_export.dart';
-import 'package:tiptrick_game/global_state.dart';
-import 'package:tiptrick_game/modules/lichsu/states/lichsu_state.dart';
-import 'package:tiptrick_game/widgets/modals/modal_thoatungdung.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:tiptrick_game/app/_app_connectivity.dart';
+import 'package:tiptrick_game/widgets/modals/modal_thoatungdung.dart';
 
 class DefaultLayerModel {
   const DefaultLayerModel();
@@ -74,8 +73,7 @@ class TipTrickAppState extends State<TipTrickApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<AuthState>(create: (_) => AuthState()),
-        ChangeNotifierProvider<LichSuState>(create: (_) => LichSuState())
+        ChangeNotifierProvider<AuthState>(create: (_) => AuthState())
       ],
       child: Builder(builder: (BuildContext context) {
         return MaterialApp(

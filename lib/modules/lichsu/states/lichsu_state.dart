@@ -1,26 +1,30 @@
 import 'dart:convert';
 import 'package:tiptrick_game/auth/states/app_state.dart';
-
+import 'package:tiptrick_game/modules/lichsu/models/lichsu_model.dart';
 
 class LichSuState extends AppState {
-  void init() {
-    _fetch();
+  List<LichSuModel> _children = [];
+  List<LichSuModel> get children => _children;
+
+  void init() async {
+    await _fetch();
   }
 
   Future<void> _fetch() async {
     Map data = {'PageSize': 20, 'PageIndex': 1};
-
     Map<String, dynamic> headers = {};
-
+    loading = true;
     await gfetch('', headers, json.encode(data), (data) {
       try {
-        loading = true;
-        loading = false;
+        var tempt = ListLichSuModel.fromJson(data);
+        _children.addAll(tempt.data);
       } catch (e) {
         throw Exception(e);
       }
     });
+    loading = false;
+    notifyListeners();
   }
 
-  Future<void> onRefresh() async {}
+  Future<void> refresh() async {}
 }

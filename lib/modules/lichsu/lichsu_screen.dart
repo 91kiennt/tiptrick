@@ -1,6 +1,11 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:sliver_tools/sliver_tools.dart';
+import 'package:provider/provider.dart';
+import 'package:grouped_list/grouped_list.dart';
+import 'package:tiptrick_game/helpers/extension.dart';
+import 'package:tiptrick_game/modules/lichsu/states/lichsu_state.dart';
 import 'package:tiptrick_game/widgets/commons/common_list_tile.dart';
+import 'package:tiptrick_game/modules/lichsu/models/lichsu_model.dart';
 
 class LichSuScreen extends StatefulWidget {
   const LichSuScreen({Key key}) : super(key: key);
@@ -10,12 +15,12 @@ class LichSuScreen extends StatefulWidget {
 }
 
 class _LichSuScreenState extends State<LichSuScreen> {
-  List<int> _listIndex = [];
+  LichSuState _vm = new LichSuState();
 
   @override
   void initState() {
     super.initState();
-    _listIndex = List<int>.generate(20, (counter) => counter);
+    _vm.init();
   }
 
   @override
@@ -23,60 +28,84 @@ class _LichSuScreenState extends State<LichSuScreen> {
     super.dispose();
   }
 
-  Future<void> refresh() async {}
-
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider<LichSuState>(
+        create: (_) => _vm,
+        child: Consumer(builder: (_, LichSuState state, __) {
+          return _vm.loading
+              ? const Center(child: CircularProgressIndicator())
+              : _body(state);
+        }));
+  }
+
+  Widget _body(LichSuState state) {
     return RefreshIndicator(
-      onRefresh: () async => await refresh(),
+      onRefresh: () async => await state.refresh(),
       backgroundColor: Colors.white,
       color: Colors.blue,
-      child: CustomScrollView(
-        shrinkWrap: true,
-        physics: const BouncingScrollPhysics(),
-        slivers: [
-          MultiSliver(pushPinnedChildren: true, children: [
-            SliverPersistentHeader(
-                pinned: true, delegate: HeaderLayoutHistory()),
-            SliverList(
-                delegate: SliverChildBuilderDelegate((_, index) {
-              return _layoutHistoryOnDate(index);
-            }, childCount: _listIndex.take(10).length))
-          ]),
-          MultiSliver(pushPinnedChildren: true, children: [
-            SliverPersistentHeader(
-                pinned: true, delegate: HeaderLayoutHistory()),
-            SliverList(
-                delegate: SliverChildBuilderDelegate((_, index) {
-              return _layoutHistoryAllDate(index);
-            }, childCount: _listIndex.take(10).length))
-          ])
-        ],
+      child: Container(
+        height: context.h,
+        alignment: Alignment.center,
+        child: state.children.isNotEmpty && state.children != null
+            ? GroupedListView<LichSuModel, int>(
+                elements: state.children,
+                groupBy: (element) {
+                  String date = element.createDate.split(' ')[0];
+                  DateTime dt1 = DateFormat('dd/MM/yyyy').parseStrict(date);
+                  return dt1.millisecondsSinceEpoch;
+                },
+                groupComparator: (val1, val2) => val2.compareTo(val1),
+                itemComparator: (LichSuModel el1, LichSuModel el2) {
+                  String date1 = el1.createDate.split(' ')[0];
+                  String date2 = el2.createDate.split(' ')[0];
+
+                  DateTime dt1 = DateFormat('dd/MM/yyyy').parseStrict(date1);
+                  DateTime dt2 = DateFormat('dd/MM/yyyy').parseStrict(date2);
+
+                  return dt1.millisecondsSinceEpoch
+                      .compareTo(dt2.millisecondsSinceEpoch);
+                },
+                floatingHeader: true,
+                groupSeparatorBuilder: (int val) {
+                  DateTime date = DateTime.fromMillisecondsSinceEpoch(val);
+                  String _date = new DateFormat("dd/MM/yyyy").format(date);
+                  int _idx = state.children
+                      .indexWhere((e) => e.createDate.contains(_date));
+                  return _idx == 0
+                      ? Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 12),
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: Colors.grey.withOpacity(.5))),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [Text(_date), _filter()],
+                          ),
+                        )
+                      : Container(
+                          alignment: Alignment.centerLeft,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 12),
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1,
+                                  color: Colors.grey.withOpacity(.5))),
+                          child: Text(_date));
+                },
+                itemExtent: 200,
+                indexedItemBuilder: (context, _, index) {
+                  return _item(index);
+                },
+              )
+            : Text('Chưa có sẵn dữ liệu!'),
       ),
     );
   }
 
-  Widget _layoutHistoryOnDate(int index) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-      decoration: BoxDecoration(
-          border: Border.all(width: 1, color: Colors.grey.withOpacity(.5))),
-      child: Column(
-        children: [_itemHistory(index)],
-      ),
-    );
-  }
-
-  Widget _layoutHistoryAllDate(int index) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-      child: Column(
-        children: [_itemHistory(index)],
-      ),
-    );
-  }
-
-  Widget _itemHistory(int index) {
+  Widget _item(int index) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
@@ -123,74 +152,7 @@ class _LichSuScreenState extends State<LichSuScreen> {
     );
   }
 
-  IconData _icon(int dpType) {
-    switch (dpType) {
-      case 1:
-        return Icons.person;
-      default:
-        return Icons.abc;
-    }
-  }
-
-  // Widget _filterInLayout() {
-  //   return PopupMenuButton(
-  //     key: const Key('PopupMenuButton'),
-  //     padding: const EdgeInsets.all(0),
-  //     itemBuilder: (context) => [
-  //       PopupMenuItem(
-  //           value: 1,
-  //           child: Row(children: const [
-  //             Text('Tăng dần',
-  //                 style: TextStyle(fontSize: 14, color: Colors.black87))
-  //           ])),
-  //       PopupMenuItem(
-  //           value: 2,
-  //           child: Row(children: const [
-  //             Text('Giảm dần',
-  //                 style: TextStyle(fontSize: 14, color: Colors.black87))
-  //           ]))
-  //     ],
-  //     onSelected: (value) async {
-  //       switch (value) {
-  //         case 1:
-  //           break;
-  //         case 2:
-  //           break;
-  //       }
-  //     },
-  //     child: const Padding(
-  //       padding: EdgeInsets.all(8.0),
-  //       child: Icon(Icons.more_horiz, size: 25), //more_vert
-  //     ),
-  //   );
-  // }
-}
-
-class HeaderLayoutHistory extends SliverPersistentHeaderDelegate {
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      decoration: const BoxDecoration(color: Colors.grey),
-      child: ConstrainedBox(
-        constraints: const BoxConstraints.tightFor(
-          height: 60,
-        ),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text('Ngày ${DateTime.now()}',
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16)),
-          // bo loc
-          _filterInLayout(),
-        ]),
-      ),
-    );
-  }
-
-  Widget _filterInLayout() {
+  Widget _filter() {
     return PopupMenuButton(
       key: const Key('PopupMenuButton'),
       padding: const EdgeInsets.all(0),
@@ -223,13 +185,12 @@ class HeaderLayoutHistory extends SliverPersistentHeaderDelegate {
     );
   }
 
-  @override
-  double get maxExtent => 60;
-
-  @override
-  double get minExtent => 60;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      true;
+  IconData _icon(int dpType) {
+    switch (dpType) {
+      case 1:
+        return Icons.person;
+      default:
+        return Icons.abc;
+    }
+  }
 }

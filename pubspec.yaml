@@ -26,6 +26,8 @@ dependencies:
   camera: ^0.10.0+3
   sliver_tools: ^0.2.12
   http: ^0.13.6
+  grouped_list: ^5.1.2
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
