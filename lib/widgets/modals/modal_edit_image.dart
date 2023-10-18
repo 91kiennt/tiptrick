@@ -1,4 +1,5 @@
-import 'package:tiptrick_game/auth/_auth_export.dart';
+import 'package:flutter/material.dart';
+import 'package:tiptrick_game/auth/widgets/widget_auth.dart';
 import 'package:tiptrick_game/widgets/commons/common_modal_button.dart';
 import 'package:tiptrick_game/widgets/backgrounds/background_modal.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiptrick_game/widgets/commons/common_button.dart';
-import 'package:tiptrick_game/widgets/modals/modal_edit_image.dart';
 import 'package:tiptrick_game/widgets/modals/modal_edit_name.dart';
+import 'package:tiptrick_game/widgets/modals/modal_edit_image.dart';
 import 'package:tiptrick_game/widgets/modals/modal_edit_phone.dart';
 import 'package:tiptrick_game/widgets/modals/modal_edit_email.dart';
 import 'package:tiptrick_game/widgets/commons/common_list_tile.dart';

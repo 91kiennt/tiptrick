@@ -1,7 +1,8 @@
 import 'package:provider/provider.dart';
-import 'package:tiptrick_game/auth/_auth_export.dart';
+import 'package:tiptrick_game/helpers/captcha.dart';
 import 'package:tiptrick_game/helpers/message.dart';
 import 'package:tiptrick_game/helpers/extension.dart';
+import 'package:tiptrick_game/auth/_auth_export.dart';
 import 'package:tiptrick_game/widgets/commons/common_modal_button.dart';
 import 'package:tiptrick_game/widgets/backgrounds/background_modal.dart';
 
@@ -42,7 +43,7 @@ class _SettingAdsDialogState extends State<_SettingAdsDialog> {
 
   void _submit() async {
     if (!_validator) return;
-    // await aRecaptchaVerify(context);
+    await aRecaptchaVerify(context);
     var authState = Provider.of<AuthState>(context, listen: false);
     _loader.show(context);
     bool value =
