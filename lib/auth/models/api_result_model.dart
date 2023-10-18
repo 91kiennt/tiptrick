@@ -5,7 +5,7 @@ class ApiResultModel {
 
   ApiResultModel({this.message = '', this.statusMessage = false, this.data});
 
-  factory ApiResultModel.fromRJson(Map<String, dynamic> json) {
+  factory ApiResultModel.fromGJson(Map<String, dynamic> json) {
     try {
       assert(json != null);
       return ApiResultModel(

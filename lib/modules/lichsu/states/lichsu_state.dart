@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'package:tiptrick_game/auth/states/app_state.dart';
 
-import 'package:tiptrick_game/auth/_auth_export.dart';
 
 class LichSuState extends AppState {
   void init() {
@@ -13,7 +13,10 @@ class LichSuState extends AppState {
     Map<String, dynamic> headers = {};
 
     await gfetch('', headers, json.encode(data), (data) {
-      try {} catch (e) {
+      try {
+        loading = true;
+        loading = false;
+      } catch (e) {
         throw Exception(e);
       }
     });

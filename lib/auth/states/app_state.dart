@@ -24,14 +24,14 @@ class AppState extends ChangeNotifier {
       {bool isGet = false, bool isDynamic = false}) async {
     var response = isGet
         ? await get(Uri.parse(url), headers: headers)
-            .timeout(Duration(milliseconds: timeOutApi))
+            .timeout(new Duration(milliseconds: timeOutApi))
         : await post(Uri.parse(url), headers: headers, body: body)
-            .timeout(Duration(milliseconds: timeOutApi));
+            .timeout(new Duration(milliseconds: timeOutApi));
     try {
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
         ApiResultModel result;
-        result = ApiResultModel.fromRJson(data);
+        result = ApiResultModel.fromGJson(data);
         try {
           if (result.statusMessage) {
             try {
