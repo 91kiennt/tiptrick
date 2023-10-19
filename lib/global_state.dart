@@ -18,4 +18,10 @@ class GlobalState {
   static final ConfigModel _config = ConfigModel();
 
   static ConfigModel get config => _config;
+
+  static String _tokenFcm = '';
+  static String get tokenFcm => _tokenFcm;
+  static void setToken(String token) {
+    _tokenFcm = token;
+  }
 }
