@@ -1,4 +1,5 @@
-import 'package:tiptrick_game/auth/_auth_export.dart';
+import 'package:flutter/material.dart';
+import 'package:tiptrick_game/auth/models/config_model.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 final GlobalKey<ScaffoldMessengerState> snackbarKey =

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:tiptrick_game/helpers/extension.dart';
-import 'package:tiptrick_game/modules/lichsu/states/lichsu_state.dart';
 import 'package:tiptrick_game/widgets/commons/common_list_tile.dart';
+import 'package:tiptrick_game/modules/lichsu/states/lichsu_state.dart';
 import 'package:tiptrick_game/modules/lichsu/models/lichsu_model.dart';
 
 class LichSuScreen extends StatefulWidget {
@@ -34,7 +34,7 @@ class _LichSuScreenState extends State<LichSuScreen> {
         create: (_) => _vm,
         child: Consumer(builder: (_, LichSuState state, __) {
           return _vm.loading
-              ? const Center(child: CircularProgressIndicator())
+              ? Center(child: const CircularProgressIndicator())
               : _body(state);
         }));
   }

@@ -81,7 +81,6 @@ class TipTrickAppState extends State<TipTrickApp> with WidgetsBindingObserver {
           navigatorKey: navigatorKey,
           scaffoldMessengerKey: snackbarKey,
           title: 'Tip Trick Game',
-          // theme: Provider.of<ThemeNotifier>(context).AppTheme,
           home: WillPopScope(
             onWillPop: () async => await thoatUngDungModal(context: context),
             child: const SplashPage(),

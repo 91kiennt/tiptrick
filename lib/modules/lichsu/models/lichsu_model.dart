@@ -1,5 +1,5 @@
-import 'package:tiptrick_game/base/abstract_model.dart';
 import 'package:tiptrick_game/env/model.dart';
+import 'package:tiptrick_game/base/abstract_model.dart';
 
 class LichSuModel extends ModelAbstract {
   int amountInvoice;

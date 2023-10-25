@@ -8,6 +8,7 @@ import 'package:tiptrick_game/modules/lichsu/lichsu_screen.dart';
 import 'package:tiptrick_game/modules/thongke/thongke_screen.dart';
 import 'package:tiptrick_game/modules/trangchu/trangchu_screen.dart';
 import 'package:tiptrick_game/modules/taikhoan/taikhoan_screen.dart';
+import 'package:tiptrick_game/widgets/wrapper_screen.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
@@ -75,10 +76,10 @@ class MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WrapperScreen(
       key: scaffoldKey,
-      appBar: _appBar(context, _labelForIndex),
       drawer: const DrawerApp(),
+      appBar: _appBar(context, _labelForIndex),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[];

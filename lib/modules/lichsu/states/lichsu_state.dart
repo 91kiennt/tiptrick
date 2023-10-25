@@ -26,5 +26,7 @@ class LichSuState extends AppState {
     notifyListeners();
   }
 
-  Future<void> refresh() async {}
+  Future<void> refresh() async {
+    await _fetch();
+  }
 }

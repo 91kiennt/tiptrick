@@ -29,68 +29,68 @@ class _UploadImageDialogState extends State<_UploadImageDialog> {
     return Column(children: [
       aFormLabel("Ảnh đại diện", color: Colors.black87),
       aFormUpload('Chọn file ảnh', () {}),
-      ..._buttonCamera()
+      // ..._buttonCamera()
     ]);
   }
 
-  List<Widget> _buttonCamera() {
-    return <Widget>[
-      const SizedBox(height: 16),
-      Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
-          Expanded(child: Divider(height: 1, color: Colors.black87)),
-          SizedBox(width: 16),
-          Expanded(
-              child: Text('Hoặc',
-                  style: TextStyle(fontSize: 16, color: Colors.black87),
-                  textAlign: TextAlign.center)),
-          SizedBox(width: 16),
-          Expanded(child: Divider(height: 1, color: Colors.black87))
-        ],
-      ),
-      const SizedBox(height: 16),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed('/Camera');
-            },
-            child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.black87)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
-                    Icon(Icons.camera_alt_outlined, color: Colors.black87),
-                    SizedBox(width: 12),
-                    Text('Mở camera',
-                        style: TextStyle(color: Colors.black87, fontSize: 16),
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center),
-                  ],
-                )),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const Text('Hình ảnh được lấy từ camera',
-                  style: TextStyle(color: Colors.black87)),
-              InkWell(
-                  onTap: () {},
-                  child:
-                      const Icon(Icons.close, size: 20, color: Colors.black87))
-            ],
-          )
-        ],
-      )
-    ];
-  }
+  // List<Widget> _buttonCamera() {
+  //   return <Widget>[
+  //     const SizedBox(height: 16),
+  //     Row(
+  //       mainAxisSize: MainAxisSize.max,
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: const <Widget>[
+  //         Expanded(child: Divider(height: 1, color: Colors.black87)),
+  //         SizedBox(width: 16),
+  //         Expanded(
+  //             child: Text('Hoặc',
+  //                 style: TextStyle(fontSize: 16, color: Colors.black87),
+  //                 textAlign: TextAlign.center)),
+  //         SizedBox(width: 16),
+  //         Expanded(child: Divider(height: 1, color: Colors.black87))
+  //       ],
+  //     ),
+  //     const SizedBox(height: 16),
+  //     Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         GestureDetector(
+  //           onTap: () {
+  //             Navigator.of(context).pushNamed('/Camera');
+  //           },
+  //           child: Container(
+  //               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+  //               decoration: BoxDecoration(
+  //                   borderRadius: BorderRadius.circular(8),
+  //                   border: Border.all(color: Colors.black87)),
+  //               child: Row(
+  //                 mainAxisAlignment: MainAxisAlignment.center,
+  //                 children: const <Widget>[
+  //                   Icon(Icons.camera_alt_outlined, color: Colors.black87),
+  //                   SizedBox(width: 12),
+  //                   Text('Mở camera',
+  //                       style: TextStyle(color: Colors.black87, fontSize: 16),
+  //                       overflow: TextOverflow.ellipsis,
+  //                       textAlign: TextAlign.center),
+  //                 ],
+  //               )),
+  //         ),
+  //         const SizedBox(height: 20),
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //           children: <Widget>[
+  //             const Text('Hình ảnh được lấy từ camera',
+  //                 style: TextStyle(color: Colors.black87)),
+  //             InkWell(
+  //                 onTap: () {},
+  //                 child:
+  //                     const Icon(Icons.close, size: 20, color: Colors.black87))
+  //           ],
+  //         )
+  //       ],
+  //     )
+  //   ];
+  // }
 
   @override
   Widget build(BuildContext context) {
