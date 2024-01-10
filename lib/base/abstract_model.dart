@@ -1,4 +1,4 @@
-import 'package:tiptrick_game/env/model.dart';
+import 'package:tiptrick_game/base/model.dart';
 
 abstract class ModelAbstract extends Model {
   String contentId;

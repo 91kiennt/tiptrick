@@ -80,7 +80,7 @@ class TipTrickAppState extends State<TipTrickApp> with WidgetsBindingObserver {
           debugShowCheckedModeBanner: true,
           navigatorKey: navigatorKey,
           scaffoldMessengerKey: snackbarKey,
-          title: 'Tip Trick Game',
+          title: 'Tip&Trick Game',
           home: WillPopScope(
             onWillPop: () async => await thoatUngDungModal(context: context),
             child: const SplashPage(),

@@ -1,4 +1,4 @@
-import 'package:tiptrick_game/env/model.dart';
+import 'package:tiptrick_game/base/model.dart';
 import 'package:tiptrick_game/base/abstract_model.dart';
 
 class LichSuModel extends ModelAbstract {
@@ -22,13 +22,13 @@ class LichSuModel extends ModelAbstract {
 
   @override
   Map<String, dynamic> toMap() => {
-    'contentId': contentId,
-    'title': title,
-    'description': description,
-    'iconId': iconId,
-    'createDate': createDate,
-    'displayType': displayType,
-  };
+        'contentId': contentId,
+        'title': title,
+        'description': description,
+        'iconId': iconId,
+        'createDate': createDate,
+        'displayType': displayType,
+      };
 
   factory LichSuModel.fromJson(Map<String, dynamic> json) {
     try {
